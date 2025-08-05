@@ -1,0 +1,1 @@
+export const INPUT_COLOR = '#f1f4f5';
