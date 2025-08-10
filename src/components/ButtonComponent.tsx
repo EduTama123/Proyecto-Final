@@ -1,30 +1,32 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { SECONDARY_BACKGROUNDCOLOR, TERTIARY_COLOR } from '../commons/constants';
+import { TERTIARY_COLOR } from '../commons/constants';
 
 interface Props { //propiedades
     textButton: string;
     handleLogin: () => void;
+    fontSize?: number;
 }
 
-export const ButtonComponent = ({ textButton, handleLogin }: Props) => {
+export const ButtonComponent = ({ textButton, handleLogin, fontSize=15 }: Props) => {
     return (
         <TouchableOpacity style={styles.button}
             onPress={handleLogin}>
-            <Text style={styles.buttonText}>{textButton}</Text>
+            <Text style={[styles.buttonText, {fontSize}]}>{textButton}</Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     button: {
+        width: '30%',
+        alignSelf: 'center',
         backgroundColor: TERTIARY_COLOR,
         paddingVertical: 15,
+        marginTop: 5,
         borderRadius: 10,
     },
     buttonText: {
-        color: SECONDARY_BACKGROUNDCOLOR,
-        fontSize: 14,
         fontWeight: 'bold',
         textAlign: 'center'
     }

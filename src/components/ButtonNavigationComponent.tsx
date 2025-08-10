@@ -6,6 +6,7 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 interface Props {    //propiedades dinamicas para cambiar su valor
     textButton: string;
     screen?: string;
+    onPress?: () => void;
     width?: any;
     paddingVertical?: number;
     marginVertical?: number;
@@ -17,6 +18,7 @@ interface Props {    //propiedades dinamicas para cambiar su valor
 export const ButtonNavigationComponent = ({  //valores por defecto
     textButton,
     screen,
+    onPress,
     width = '70%',
     paddingVertical = 15,
     marginVertical = 20,
@@ -30,7 +32,10 @@ export const ButtonNavigationComponent = ({  //valores por defecto
 
     //Funcion para navegar en cualquier ventana
     const funcionNavegacion = () => {
-        if (screen) {
+        if (onPress) {
+            onPress(); // Si hay función personalizada, la ejecuta
+        } else if (screen) {
+            // Navega a la pantalla especificada
             navigation.dispatch(CommonActions.navigate({ name: screen }));
         }
     };

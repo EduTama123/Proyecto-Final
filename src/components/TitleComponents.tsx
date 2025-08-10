@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { SECONDARY_BACKGROUNDCOLOR } from '../commons/constants';
 
 //componente reutilizable
 interface Props {    //propiedades dinamicas para cambiar su valor
@@ -10,6 +9,8 @@ interface Props {    //propiedades dinamicas para cambiar su valor
     marginHorizontal?: number;
     backgroundColor?: string;
     paddingVertical?: number;
+    borderBottomLeftRadius?: number;
+    borderBottomRightRadius?: number;
     color?: string;
 }
 
@@ -20,27 +21,31 @@ export const TitleComponent = ({  //valores por defecto
     marginHorizontal = 100,
     paddingVertical = 0,
     backgroundColor = 'transparent',
+    borderBottomLeftRadius = 0,
+    borderBottomRightRadius = 0,
     color = 'black'
 }: Props) => {
 
     return (
         <View>
             <Text style={[styles.title,
-                {
-                    fontSize,
-                    marginTop,
-                    marginHorizontal,
-                    paddingVertical,
-                    backgroundColor,
-                    color
-                }
+            {
+                fontSize,
+                marginTop,
+                marginHorizontal,
+                paddingVertical,
+                backgroundColor,
+                borderBottomLeftRadius,
+                borderBottomRightRadius,
+                color
+            }
             ]}>
                 {title}
             </Text>
         </View>
     )
 }
-
+//estilos locales
 const styles = StyleSheet.create({
     title: {
         fontWeight: 'bold',

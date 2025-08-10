@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: PRIMARY_BACKGROUNDCOLOR,
     },
-    containerForms: {
+    containerBackground: {
         flex: 1,
         backgroundColor: SECONDARY_BACKGROUNDCOLOR,
     },
@@ -20,31 +20,6 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 270,
     },
-    container: {
-        width: '100%',
-        height: '70%',
-        marginVertical: '30%',
-        position: 'absolute',
-        alignSelf: 'center',
-        alignItems: 'center',
-    },
-    containerImage: {
-        paddingVertical: 20,
-        alignItems: 'center'
-    },
-    containerForm: {
-        marginVertical: 5
-    },
-    iconForm: {
-        position: 'absolute',
-        bottom: 26,
-        right: 6
-    },
-    avatar: {
-        width: 200,
-        height: 200,
-        borderRadius: 100
-    },
     imagen: {
         width: '100%',
         height: '62%',
@@ -52,4 +27,30 @@ export const styles = StyleSheet.create({
         left: 10,
         top: 14,
     },
+    containerImage: {
+        paddingVertical: 20,
+        alignItems: 'center'
+    },
+    avatar: {
+        width: 150,
+        height: 150,
+        borderRadius: 100
+    },
+    containerForm: {
+        marginVertical: 10,
+        marginHorizontal: 30,
+    },
+    containerInput:{
+    },
+    containerInputSuperpuesto:{
+      width: '50%',
+      position: 'absolute',
+      right: 0
+    },
+    iconForm: {
+        position: 'absolute',
+        bottom: 11,
+        right: 15
+    },
+
 })

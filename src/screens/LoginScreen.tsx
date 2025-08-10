@@ -4,7 +4,7 @@ import { styles } from '../theme/appTheme';
 import { TitleComponent } from '../components/TitleComponents';
 import { TextComponent } from '../components/TextComponent';
 import { TERTIARY_COLOR } from '../commons/constants';
-import { useNavigation, CommonActions } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { InputComponent } from '../components/InputComponent';
 import { ButtonNavigationComponent } from '../components/ButtonNavigationComponent';
 import { ButtonComponent } from '../components/ButtonComponent';
@@ -28,7 +28,7 @@ interface User {
 //arreglo con la lista de usuarios
 const users: User[] = [
     { id: 1, name: 'Eduardo Tamayo', username: 'Tamayo', password: '123' },
-    { id: 2, name: 'Erick Rodriguez', username: 'Erick', password: '1234' }
+    { id: 2, name: 'Erick Rodriguez', username: 'Erick', password: '12345' }
 ];
 
 export const LoginScreen = () => {
@@ -46,7 +46,6 @@ export const LoginScreen = () => {
 
     //funcion para modificar el estado del formulario
     const chanceFormLogin = (property: string, value: string): void => {
-        //console.log(property + ': ', value);
         setformLogin({ ...formLogin, [property]: value })
     }
 
@@ -67,13 +66,14 @@ export const LoginScreen = () => {
         //Verificar si el usuario existe
         if (!verifyUser()) {
             Alert.alert('Error', 'Usuario y/o contraseña incorrectos');
-            return; //El retur impide que se ejecuten las demas lineas de codigo
+            return; //El return impide que se ejecuten las demas lineas de codigo
         }
         console.log(formLogin);
+        Alert.alert('Acceso exitoso! ', 'Bienvenido de nuevo '+formLogin.username);
     }
     return (
-        <View style={styles.containerForms}>
-            <TitleComponent title='SWEET TIME' fontSize={50} marginTop={50} marginHorizontal={0} paddingVertical={20} backgroundColor={TERTIARY_COLOR} />
+        <View style={styles.containerBackground}>
+            <TitleComponent title='SWEET TIME' fontSize={50} marginHorizontal={0} paddingVertical={35} backgroundColor={TERTIARY_COLOR} borderBottomLeftRadius={30} borderBottomRightRadius={30} />
             <View style={styles.containerImage}>
                 <Image
                     source={{
@@ -81,20 +81,21 @@ export const LoginScreen = () => {
                     }}
                     style={styles.avatar} />
             </View>
-            <TextComponent title='Iniciar Sesión' fontSize={30} />
+            <TextComponent title='Iniciar Sesión' fontSize={28} />
             <View style={styles.containerForm}>
-                
-                <InputComponent placeholder='Usuario' KeyboardType='email-address' changeForm={chanceFormLogin} property='username' />
+                <TextComponent title='Usuario' fontSize={20} textAlign='left' marginHorizontal={12} marginVertical={10}/>
+                <InputComponent placeholder='Usuario' KeyboardType='email-address' changeForm={chanceFormLogin} property='username'/>
+                <TextComponent title='Contraseña' fontSize={20} textAlign='left' marginHorizontal={12} marginVertical={10}/>
                 <InputComponent placeholder='Contraseña' KeyboardType='default' changeForm={chanceFormLogin} property='password'
                     isPassword={hiddenPassword} />
                 <Icon
                     name={hiddenPassword ? 'visibility' : 'visibility-off'}
-                    size={28}
+                    size={30}
                     style={styles.iconForm}
                     onPress={() => sethiddenPassword(!hiddenPassword)} />
             </View>
-            <ButtonComponent textButton='Iniciar' handleLogin={handleLogin} />
-            <ButtonNavigationComponent textButton='No tienes una cuenta? Regístrate ahora' screen='Register' />
+            <ButtonComponent textButton='Iniciar' handleLogin={handleLogin} fontSize={20}/>
+            <ButtonNavigationComponent textButton='No tienes una cuenta? ¡Regístrate ahora!' screen='Register' width={'50%'} fontSize={20} paddingVertical={50} />
         </View>
 
     );
