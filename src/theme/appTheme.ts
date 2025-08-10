@@ -1,35 +1,55 @@
-import { Button, StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
+import { SECONDARY_BACKGROUNDCOLOR, PRIMARY_BACKGROUNDCOLOR } from "../commons/constants";
 
 //genstion de estilos
 export const styles = StyleSheet.create({
-    imagenFondo: {
+    containerStart: {
         flex: 1,
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
+        backgroundColor: PRIMARY_BACKGROUNDCOLOR,
     },
-    overlay: {
-        ...StyleSheet.absoluteFillObject,
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+    containerForms: {
+        flex: 1,
+        backgroundColor: SECONDARY_BACKGROUNDCOLOR,
+    },
+    decorationStart: {
+        flex: 1,
+        position: 'absolute',
+        bottom: '52%',
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'white',
+        borderRadius: 270,
     },
     container: {
-        flex: 1,
-        justifyContent: 'center',
+        width: '100%',
+        height: '70%',
+        marginVertical: '30%',
+        position: 'absolute',
+        alignSelf: 'center',
         alignItems: 'center',
     },
-    containerLogin: {
-        alignSelf: 'center',
-        borderRadius: 8,
-        width: '93%',
+    containerImage: {
+        paddingVertical: 20,
+        alignItems: 'center'
     },
-    containerUsuario: {
-        flex: 1,
-        marginHorizontal: 30,
-        marginVertical: 10,
+    containerForm: {
+        marginVertical: 5
     },
-    title: {
-        fontSize: 30,
-        marginBottom: 10,
-        textAlign: 'center',
+    iconForm: {
+        position: 'absolute',
+        bottom: 26,
+        right: 6
+    },
+    avatar: {
+        width: 200,
+        height: 200,
+        borderRadius: 100
+    },
+    imagen: {
+        width: '100%',
+        height: '62%',
+        position: 'relative',
+        left: 10,
+        top: 14,
     },
 })

@@ -1,25 +1,101 @@
-import React from 'react'
-import { ImageBackground, Text, View } from 'react-native'
+import React, { useState } from 'react';
+import { Alert, Image, View } from 'react-native';
 import { styles } from '../theme/appTheme';
-import { BodyComponent } from '../components/BodyLoginComponent';
+import { TitleComponent } from '../components/TitleComponents';
+import { TextComponent } from '../components/TextComponent';
+import { TERTIARY_COLOR } from '../commons/constants';
+import { useNavigation, CommonActions } from '@react-navigation/native';
+import { InputComponent } from '../components/InputComponent';
+import { ButtonNavigationComponent } from '../components/ButtonNavigationComponent';
+import { ButtonComponent } from '../components/ButtonComponent';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+
+//interface para el objeto del formulario
+interface FormLogin {
+    username: string;
+    password: string;
+}
+
+//interface para los objetos de mi arreglo users
+interface User {
+    id: number;
+    name: string;
+    username: string;
+    password: string;
+}
+
+//arreglo con la lista de usuarios
+const users: User[] = [
+    { id: 1, name: 'Eduardo Tamayo', username: 'Tamayo', password: '123' },
+    { id: 2, name: 'Erick Rodriguez', username: 'Erick', password: '1234' }
+];
 
 export const LoginScreen = () => {
-    //imagen de fondo
-    const image = { uri: 'https://i.pinimg.com/736x/1c/77/2e/1c772e05669e4c65d6459e61ea53f893.jpg' };
-    return (
-        <View style={styles.container}>
-            {/*componente imagen de fondo */}
-            <ImageBackground source={image} resizeMode="cover" style={styles.imagenFondo}>
-                <View style={styles.overlay} />
-                {/*contenedor principal */}
-                <View style={styles.containerLogin}>
-                    <BodyComponent>
-                        <Text style={styles.title}>Inicio de sesión</Text>
-                        {/* aqui va el input */}
-                    </BodyComponent>
+    //hook useState para manejar el estado del formulario
+    const [formLogin, setformLogin] = useState<FormLogin>({
+        username: '',
+        password: ''
+    });
 
-                </View>
-            </ImageBackground>
+    //hook useState para manejar el estado de la visibilidad de la contraseña
+    const [hiddenPassword, sethiddenPassword] = useState<boolean>(true);
+
+    //hook useNavigation para navegar entre pantallas
+    const navigation = useNavigation();
+
+    //funcion para modificar el estado del formulario
+    const chanceFormLogin = (property: string, value: string): void => {
+        //console.log(property + ': ', value);
+        setformLogin({ ...formLogin, [property]: value })
+    }
+
+    //funcion para validar el usuario y la contraseña
+    const verifyUser = (): User | undefined => {
+        const existUser = users.find(user => user.username == formLogin.username && user.password == formLogin.password)
+        return existUser;
+    }
+
+
+    //funcion para iniciar sesion
+    const handleLogin = (): void => {
+        if (formLogin.username == '' || formLogin.password == '') {
+            Alert.alert('Error', 'Por favor, complete todos los campos');
+            return; //si falta algun campo, nos saca del flujo
+        }
+
+        //Verificar si el usuario existe
+        if (!verifyUser()) {
+            Alert.alert('Error', 'Usuario y/o contraseña incorrectos');
+            return; //El retur impide que se ejecuten las demas lineas de codigo
+        }
+        console.log(formLogin);
+    }
+    return (
+        <View style={styles.containerForms}>
+            <TitleComponent title='SWEET TIME' fontSize={50} marginTop={50} marginHorizontal={0} paddingVertical={20} backgroundColor={TERTIARY_COLOR} />
+            <View style={styles.containerImage}>
+                <Image
+                    source={{
+                        uri: 'https://static.vecteezy.com/system/resources/previews/032/736/579/non_2x/auditor-icon-vector.jpg'
+                    }}
+                    style={styles.avatar} />
+            </View>
+            <TextComponent title='Iniciar Sesión' fontSize={30} />
+            <View style={styles.containerForm}>
+                
+                <InputComponent placeholder='Usuario' KeyboardType='email-address' changeForm={chanceFormLogin} property='username' />
+                <InputComponent placeholder='Contraseña' KeyboardType='default' changeForm={chanceFormLogin} property='password'
+                    isPassword={hiddenPassword} />
+                <Icon
+                    name={hiddenPassword ? 'visibility' : 'visibility-off'}
+                    size={28}
+                    style={styles.iconForm}
+                    onPress={() => sethiddenPassword(!hiddenPassword)} />
+            </View>
+            <ButtonComponent textButton='Iniciar' handleLogin={handleLogin} />
+            <ButtonNavigationComponent textButton='No tienes una cuenta? Regístrate ahora' screen='Register' />
         </View>
-    )
-}
+
+    );
+};

@@ -4,12 +4,7 @@ import { InputComponent } from './InputComponent';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 
 
-//componente reutilizable
-interface Props {
-    children: ReactNode; //cualquier elemento de react (texto, imagen, arreglos, inputs, etc)
-}
-
-export const BodyComponent = ({ children }: Props) => {
+export const BodyComponent = () => {
 
     //hook useWindowDimension permite obtener las dimensiones de la pantalla
     const { height } = useWindowDimensions();
@@ -18,10 +13,9 @@ export const BodyComponent = ({ children }: Props) => {
 
     return (
         <View style={{
-            ...styles.container,
+            ...styles.containerForm,
             height: height * 0.56
         }}>
-            {children}
             <Text style={styles.textoSubtitulo}>Usuario</Text>
             <InputComponent />
             <Text style={styles.textoSubtitulo}>Contraseña</Text>
@@ -40,8 +34,8 @@ export const BodyComponent = ({ children }: Props) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#e2e8f0f6',
+    containerForm: {
+        backgroundColor: '#c8adadf6',
         borderRadius: 20,
         paddingHorizontal: 30,
         paddingTop: 30,
