@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { SECONDARY_BACKGROUNDCOLOR, PRIMARY_BACKGROUNDCOLOR } from "../commons/constants";
+import { SECONDARY_BACKGROUNDCOLOR, PRIMARY_BACKGROUNDCOLOR, MENU_COLOR } from "../commons/constants";
 
 //genstion de estilos
 export const styles = StyleSheet.create({
@@ -40,17 +40,34 @@ export const styles = StyleSheet.create({
         marginVertical: 10,
         marginHorizontal: 30,
     },
-    containerInput:{
+    containerInput: {
     },
-    containerInputSuperpuesto:{
-      width: '50%',
-      position: 'absolute',
-      right: 0
+    containerInputSuperpuesto: {
+        width: '50%',
+        position: 'absolute',
+        right: 0
     },
     iconForm: {
         position: 'absolute',
         bottom: 11,
         right: 15
     },
-
+    containerModal: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    modal: {
+        padding: 20,
+        margin: 15,
+        backgroundColor: MENU_COLOR,
+        borderRadius: 10
+    },
+    iconModal: {
+        backgroundColor: 'green',
+        position: 'absolute',
+        right: 0,
+        bottom: 0,
+    }
 })

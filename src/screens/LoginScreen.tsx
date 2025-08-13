@@ -4,23 +4,20 @@ import { styles } from '../theme/appTheme';
 import { TitleComponent } from '../components/TitleComponents';
 import { TextComponent } from '../components/TextComponent';
 import { TERTIARY_COLOR } from '../commons/constants';
-import { useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import { InputComponent } from '../components/InputComponent';
 import { ButtonNavigationComponent } from '../components/ButtonNavigationComponent';
 import { ButtonComponent } from '../components/ButtonComponent';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { User } from '../navigator/StackNavigator';
 
+//interface para las propiedades
+interface Props{
+  users: User[]; //arreglos con la lista de usuarios
+}
 
 //interface para el objeto del formulario
 interface FormLogin {
-    username: string;
-    password: string;
-}
-
-//interface para los objetos de mi arreglo users
-interface User {
-    id: number;
-    name: string;
     username: string;
     password: string;
 }
@@ -31,7 +28,7 @@ const users: User[] = [
     { id: 2, name: 'Erick Rodriguez', username: 'Erick', password: '12345' }
 ];
 
-export const LoginScreen = () => {
+export const LoginScreen = ({users}: Props) => {
     //hook useState para manejar el estado del formulario
     const [formLogin, setformLogin] = useState<FormLogin>({
         username: '',
@@ -68,7 +65,8 @@ export const LoginScreen = () => {
             Alert.alert('Error', 'Usuario y/o contraseña incorrectos');
             return; //El return impide que se ejecuten las demas lineas de codigo
         }
-        console.log(formLogin);
+        //console.log(formLogin);
+        navigation.dispatch(CommonActions.navigate({name: 'Home'}));
         Alert.alert('Acceso exitoso! ', 'Bienvenido de nuevo '+formLogin.username);
     }
     return (

@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
-import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-//NOTA IMPORTANTE:
-//DE MOMENTO NO SE USARÁ ESTE COMPONENTE, AL MOMENTO DE CREAR LA VENTANA DE CARRITO DE COMPRAS
-//SE LO USARA PARA MANTENER EL DISEÑO DE TODA LA APLICACION
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { MENU_COLOR } from '../commons/constants';
 
 //Componente reutilizable
 interface Props {
@@ -25,10 +23,10 @@ export const BodyComponent = ({ children }: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'green',
+        backgroundColor: MENU_COLOR,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        paddingHorizontal: 40,
-        paddingTop: 30
+        paddingHorizontal: 30,
+        marginTop: 30
     }
 });

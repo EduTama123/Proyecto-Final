@@ -9,6 +9,13 @@ import { ButtonComponent } from '../components/ButtonComponent';
 import { ButtonNavigationComponent } from '../components/ButtonNavigationComponent';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { User } from '../navigator/StackNavigator';
+
+//interface para las propiedades
+interface Props {
+    users: User[]; //arreglos con la lista de usuarios
+    addUser: (user: User) => void,
+}
 
 // Interface para el objeto del formulario de registro
 interface FormRegister {
@@ -19,7 +26,7 @@ interface FormRegister {
     password: string;
 }
 
-export const RegisterScreen = () => {
+export const RegisterScreen = ({ users, addUser }: Props) => {
     // Hook useNavigation para navegar entre pantallas
     const navigation = useNavigation();
 
@@ -40,8 +47,20 @@ export const RegisterScreen = () => {
         setFormRegister({ ...formRegister, [property]: value });
     }
 
+    //funcion para verificar si existe el usuario
+    const verifyUsername = (): User | undefined => {
+        const existUsername = users.find(user => user.username == formRegister.username);
+        return existUsername;
+    }
+
+    //funcion para generar los ids de los nuevos usuarios
+    const getIdUser = (): number => {
+        const getId = users.length + 1; //length: devuelve el numero de elementos del arreglo
+        return getId;
+    }
+
     // Función para manejar el registro
-    const handleRegister = (): void => {
+    const handleSingUp = (): void => {
         // Validar campos vacíos
         if (formRegister.name == '' || formRegister.lastName == '' ||
             formRegister.email == '' || formRegister.username == '' ||
@@ -50,12 +69,25 @@ export const RegisterScreen = () => {
             return; // Si falta algún campo, sale del flujo
         }
 
-        // Mostrar datos en consola (simulando registro)
-        console.log('Registro:', formRegister);
-        Alert.alert('Éxito', 'Registro completado correctamente!');
-        //Navegacion para regresar a la pantalla login
-        navigation.goBack();
+        //validar que no exista el usuario
+        if (verifyUsername() != undefined) {
+            Alert.alert('Error', 'El usuario ya existe');
+            return;
+        }
 
+        //crear el nuevo usuario (objeto)
+        const newUser: User = {
+            id: getIdUser(),
+            name: formRegister.name,
+            username: formRegister.username,
+            password: formRegister.password
+        }
+
+        //agregar el nuevo usuario al arreglo
+        addUser(newUser);
+        Alert.alert('Éxito', 'Usuario registrado correctamente');
+        navigation.goBack();
+        console.log(formRegister);
     }
 
     return (
@@ -91,7 +123,7 @@ export const RegisterScreen = () => {
                     style={styles.iconForm}
                     onPress={() => setHiddenPassword(!hiddenPassword)} />
             </View>
-            <ButtonComponent textButton='Registrarme' handleLogin={handleRegister} fontSize={18}/>
+            <ButtonComponent textButton='Registrarme' handleLogin={handleSingUp} fontSize={18} />
             <ButtonNavigationComponent textButton='Ya tienes una cuenta? Inicia sesión ahora' onPress={() => navigation.goBack()} width={'80%'} />
         </View>
     );
