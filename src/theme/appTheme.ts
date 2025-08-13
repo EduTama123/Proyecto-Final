@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { SECONDARY_BACKGROUNDCOLOR, PRIMARY_BACKGROUNDCOLOR, MENU_COLOR } from "../commons/constants";
+import { SECONDARY_BACKGROUNDCOLOR, PRIMARY_BACKGROUNDCOLOR, MENU_COLOR, TERTIARY_COLOR } from "../commons/constants";
 
 //genstion de estilos
 export const styles = StyleSheet.create({
@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
         borderRadius: 100
     },
     containerForm: {
-        marginVertical: 10,
+        marginVertical: 5,
         marginHorizontal: 30,
     },
     containerInput: {
@@ -64,10 +64,72 @@ export const styles = StyleSheet.create({
         backgroundColor: MENU_COLOR,
         borderRadius: 10
     },
-    iconModal: {
-        backgroundColor: 'green',
+    headerModal: {
+        alignSelf: 'center',
+        width: '90%',
+        marginBottom: 10
+    },
+    containerIcon: {
         position: 'absolute',
         right: 0,
-        bottom: 0,
+        padding: 5,
+    },
+    titleModal: {
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'black'
+    },
+    imageModal: {
+        width: 160,
+        height: 160,
+        borderRadius: 10
+    },
+    containerImageM: {
+        alignItems: 'center',
+    },
+    containerQuantity: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    buttonQuantity: {
+        height: 40,
+        width: 40,
+        backgroundColor: TERTIARY_COLOR,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 15,
+        borderRadius: 25
+    },
+    buttonQuantityText: {
+        fontSize: 22,
+        color: 'black',
+        fontWeight: 'bold'
+    },
+    textQuantity: {
+        fontSize: 18,
+        fontWeight: 'bold'
+    },
+    buttonAddCart: {
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: SECONDARY_BACKGROUNDCOLOR,
+        marginTop: 15,
+        paddingVertical: 10,
+        borderRadius: 10,
+        height: 45,
+        width: '80%'
+    },
+    buttonAddCartText: {
+        fontSize: 17,
+        color: 'black',
+        fontWeight: 'bold'
+    },
+    textModal: {
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginTop: 10
     }
 })

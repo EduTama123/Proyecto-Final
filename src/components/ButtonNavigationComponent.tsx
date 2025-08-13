@@ -10,6 +10,7 @@ interface Props {    //propiedades dinamicas para cambiar su valor
     width?: any;
     paddingVertical?: number;
     marginVertical?: number;
+    marginTop?: number;
     borderRadius?: number;
     backgroundColor?: string;
     fontSize?: number;
@@ -20,6 +21,7 @@ export const ButtonNavigationComponent = ({  //valores por defecto
     screen,
     onPress,
     width = '70%',
+    marginTop = 0,
     paddingVertical = 15,
     marginVertical = 20,
     borderRadius = 30,
@@ -48,6 +50,7 @@ export const ButtonNavigationComponent = ({  //valores por defecto
                     width,
                     paddingVertical,
                     marginVertical,
+                    marginTop,
                     borderRadius,
                     backgroundColor
                 }

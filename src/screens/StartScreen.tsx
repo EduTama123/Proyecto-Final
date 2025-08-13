@@ -18,6 +18,7 @@ export const StartScreen = () => {
                 <ButtonNavigationComponent
                     textButton='¡Presiona el botón para empezar!'
                     screen='Login' // Navegará a la pantalla 'Login'
+                    marginTop={20}
                 />
         </View>
     );

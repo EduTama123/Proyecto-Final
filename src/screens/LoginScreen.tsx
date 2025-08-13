@@ -80,6 +80,7 @@ export const LoginScreen = ({users}: Props) => {
                     style={styles.avatar} />
             </View>
             <TextComponent title='Iniciar Sesión' fontSize={28} />
+            <TextComponent title='Credenciales para acceder (Usuario: Tamayo / Contraseña: 123)' fontSize={12} width={'100%'} textAlign='center' marginHorizontal={0} marginVertical={0}/>
             <View style={styles.containerForm}>
                 <TextComponent title='Usuario' fontSize={20} textAlign='left' marginHorizontal={12} marginVertical={10}/>
                 <InputComponent placeholder='Usuario' KeyboardType='email-address' changeForm={chanceFormLogin} property='username'/>
@@ -93,7 +94,7 @@ export const LoginScreen = ({users}: Props) => {
                     onPress={() => sethiddenPassword(!hiddenPassword)} />
             </View>
             <ButtonComponent textButton='Iniciar' handleLogin={handleLogin} fontSize={20}/>
-            <ButtonNavigationComponent textButton='No tienes una cuenta? ¡Regístrate ahora!' screen='Register' width={'50%'} fontSize={20} paddingVertical={50} />
+            <ButtonNavigationComponent textButton='No tienes una cuenta? ¡Regístrate ahora!' screen='Register' width={'60%'} fontSize={20} marginTop={110}/>
         </View>
 
     );

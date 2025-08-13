@@ -104,10 +104,10 @@ export const RegisterScreen = ({ users, addUser }: Props) => {
             <TextComponent title='Registrate' fontSize={28} />
             <View style={styles.containerForm}>
                 <View style={styles.containerInput}>
-                    <TextComponent title='Ingrese su nombre' fontSize={18} textAlign='left' marginHorizontal={8} marginVertical={5} width='48%' />
+                    <TextComponent title='Ingrese su nombre' fontSize={17} textAlign='left' marginHorizontal={8} marginVertical={5} width='48%' />
                     <InputComponent placeholder='Nombre' KeyboardType='default' changeForm={changeFormRegister} property='name' width='45%' />
                     <View style={styles.containerInputSuperpuesto}>
-                        <TextComponent title='Ingrese su apellido' fontSize={18} textAlign='left' marginHorizontal={10} marginVertical={5} />
+                        <TextComponent title='Ingrese su apellido' fontSize={17} textAlign='left' marginHorizontal={10} marginVertical={5} />
                         <InputComponent placeholder='Apellido' KeyboardType='default' changeForm={changeFormRegister} property='lastName' width='98%' />
                     </View>
                 </View>
@@ -124,7 +124,7 @@ export const RegisterScreen = ({ users, addUser }: Props) => {
                     onPress={() => setHiddenPassword(!hiddenPassword)} />
             </View>
             <ButtonComponent textButton='Registrarme' handleLogin={handleSingUp} fontSize={18} />
-            <ButtonNavigationComponent textButton='Ya tienes una cuenta? Inicia sesión ahora' onPress={() => navigation.goBack()} width={'80%'} />
+            <ButtonNavigationComponent textButton='Ya tienes una cuenta? Inicia sesión ahora' onPress={() => navigation.goBack()} width={'80%'} marginTop={20}/>
         </View>
     );
 };
