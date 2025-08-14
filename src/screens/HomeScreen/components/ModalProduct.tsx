@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, Modal, Text, useWindowDimensions, View } from 'react-native'
+import { Alert, Image, Modal, Text, useWindowDimensions, View } from 'react-native'
 import { styles } from '../../../theme/appTheme'
 import { Product } from '../HomeScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -28,6 +28,7 @@ export const ModalProduct = ({ visible, item, setShowModal, updateStock }: Props
         setShowModal();
         //reiniciar contador
         setQuantity(1);
+        Alert.alert('Compra exitosa! ', 'Muchas gracias por comprar nuestro producto');
     }
 
     return (
@@ -36,10 +37,10 @@ export const ModalProduct = ({ visible, item, setShowModal, updateStock }: Props
                 <View style={{ ...styles.modal, width: width * 0.80 }}>
                     <View style={styles.containerIcon}>
                         <Icon name='cancel'
-                                size={26}
-                                color={'red'}
-                                onPress={setShowModal}
-                            />
+                            size={26}
+                            color={'red'}
+                            onPress={setShowModal}
+                        />
                     </View>
                     <View style={styles.headerModal}>
                         <Text style={styles.titleModal}>{item.name} - $ {item.price.toFixed(2)}</Text>

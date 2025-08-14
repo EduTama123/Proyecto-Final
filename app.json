@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "carrito-cacao-app",
-    "slug": "carrito-cacao-app",
+    "name": "chocolate-app",
+    "slug": "chocolate-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

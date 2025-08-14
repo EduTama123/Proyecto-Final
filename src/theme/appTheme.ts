@@ -24,8 +24,8 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '62%',
         position: 'relative',
-        left: 10,
-        top: 14,
+        left: 6,
+        top: 19,
     },
     containerImage: {
         paddingVertical: 20,
@@ -37,8 +37,12 @@ export const styles = StyleSheet.create({
         borderRadius: 100
     },
     containerForm: {
-        marginVertical: 5,
-        marginHorizontal: 30,
+        alignSelf: 'center',
+        padding: 15,
+        marginVertical: 10,
+        backgroundColor: PRIMARY_BACKGROUNDCOLOR,
+        borderRadius: 10,
+        width: '90%'
     },
     containerInput: {
     },
@@ -49,8 +53,8 @@ export const styles = StyleSheet.create({
     },
     iconForm: {
         position: 'absolute',
-        bottom: 11,
-        right: 15
+        bottom: 25,
+        right: 25
     },
     containerModal: {
         flex: 1,
@@ -78,7 +82,7 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         fontWeight: 'bold',
-        color: 'black'
+        color: 'black',
     },
     imageModal: {
         width: 160,
@@ -127,9 +131,14 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     textModal: {
+        alignSelf: 'center',
         textAlign: 'center',
         fontSize: 20,
         fontWeight: 'bold',
-        marginTop: 10
+        marginTop: 10,
+        backgroundColor: 'red',
+        width: '65%',
+        padding: 10,
+        borderRadius: 10
     }
 })

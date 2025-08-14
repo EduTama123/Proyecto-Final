@@ -124,7 +124,7 @@ export const RegisterScreen = ({ users, addUser }: Props) => {
                     onPress={() => setHiddenPassword(!hiddenPassword)} />
             </View>
             <ButtonComponent textButton='Registrarme' handleLogin={handleSingUp} fontSize={18} />
-            <ButtonNavigationComponent textButton='Ya tienes una cuenta? Inicia sesión ahora' onPress={() => navigation.goBack()} width={'80%'} marginTop={20}/>
+            <ButtonNavigationComponent textButton='Ya tienes una cuenta? Inicia sesión ahora' onPress={() => navigation.goBack()} width={'80%'} marginTop={0}/>
         </View>
     );
 };
