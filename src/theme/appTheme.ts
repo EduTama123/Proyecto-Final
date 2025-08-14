@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { SECONDARY_BACKGROUNDCOLOR, PRIMARY_BACKGROUNDCOLOR, MENU_COLOR, TERTIARY_COLOR } from "../commons/constants";
+import { SECONDARY_BACKGROUNDCOLOR, PRIMARY_BACKGROUNDCOLOR, MENU_COLOR, TERTIARY_COLOR, OFF_STOCK_COLOR } from "../commons/constants";
 
 //genstion de estilos
 export const styles = StyleSheet.create({
@@ -136,9 +136,10 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginTop: 10,
-        backgroundColor: 'red',
+        backgroundColor: OFF_STOCK_COLOR,
         width: '65%',
         padding: 10,
         borderRadius: 10
-    }
+    },
+    
 })

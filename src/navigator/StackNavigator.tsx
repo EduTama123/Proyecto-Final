@@ -32,7 +32,6 @@ export const Stacknavigator = () => {
     }
     return (
         <Stack.Navigator
-            //initialRouteName='Start'
             screenOptions={{ headerShown: false}}
         >
             <Stack.Screen name='Start' component={StartScreen} />

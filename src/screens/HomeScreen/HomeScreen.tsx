@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-import { Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 import { BodyComponent } from '../../components/BodyComponent'
 import { FlatList } from 'react-native'
 import { CardProduct } from './components/CardProduct'
 import { TitleComponent } from '../../components/TitleComponents'
 import { TERTIARY_COLOR } from '../../commons/constants'
-import { styles } from '../../theme/appTheme'
+import { styles } from '../../theme/appTheme';
 import { TextComponent } from '../../components/TextComponent'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import { ModalCart } from './components/ModalCart'
 
 //interface para el arreglo de objetos de productos
 export interface Product {
@@ -18,7 +20,7 @@ export interface Product {
 }
 
 //interface para el arreglo carrito
-interface Cart {
+export interface Cart {
   id: number;
   name: string;
   price: number;
@@ -48,6 +50,9 @@ export const HomeScreen = () => {
   //hook useState para controlar los productos del carrito
   const [cart, setCart] = useState<Cart[]>([]); //arreglo con los productos seleccionados
 
+  //hook useState para manejar el estado del modal
+  const [showModal, setShowModal] = useState<boolean>(false);
+
   //funcion para actualizar el stock
   const updateStock = (id: number, quantity: number) => {
     const updateProducts = listProducts.map(product => product.id == id
@@ -57,7 +62,7 @@ export const HomeScreen = () => {
     setListProducts(updateProducts);
     //llamar la funcion para añadir al carrito
     addProduct(id, quantity);
-  }
+  };
 
   //funcion para agregar los productos al carrito
   const addProduct = (id: number, quantity: number): void => {
@@ -68,34 +73,80 @@ export const HomeScreen = () => {
       return;
     }
 
-    //Crear producto para el carrito
-    const newProductCart: Cart = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      quantity: quantity,
-      total: product.price * quantity
-    }
+    // Verificar si el producto ya está en el carrito
+    const existingProductIndex = cart.findIndex(item => item.id == id);
 
-    //Añadir en el carrito
-    setCart([...cart, newProductCart]);
+    if (existingProductIndex >= 0) {
+      // Funcion para actualizar la cantidad y total si el producto ya existe
+      const updatedCart = [...cart];
+      updatedCart[existingProductIndex] = {...updatedCart[existingProductIndex],
+        quantity: updatedCart[existingProductIndex].quantity + quantity,
+        total: updatedCart[existingProductIndex].total + (product.price * quantity)
+      };
+      setCart(updatedCart);
+    } else {
+      // Añadir nuevo producto si no existe
+      const newProductCart: Cart = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: quantity,
+        total: product.price * quantity
+      };
+      setCart([...cart, newProductCart]);
+    }
     console.log(cart);
-  }
+  };
+  // Función para limpiar el carrito después de comprar
+  const clearCart = (): void => {
+    setCart([]); //Elimina todos los productos del carrito
+    setShowModal(false);
+    Alert.alert('Compra exitosa! ', 'Muchas gracias por comprar nuestros productos :D');
+  };
 
   return (
     <View style={styles.containerBackground}>
-      <TitleComponent title='PRODUCTOS' fontSize={50} marginHorizontal={0} paddingVertical={35} backgroundColor={TERTIARY_COLOR} borderBottomLeftRadius={30} borderBottomRightRadius={30} />
+      <TitleComponent title='PRODUCTOS' fontSize={40} marginHorizontal={0} paddingVertical={50} backgroundColor={TERTIARY_COLOR} borderBottomLeftRadius={30} borderBottomRightRadius={30} />
+      <View style={localStyles.headerHome}>
+        <View style={localStyles.continerIcon}>
+          <Text style={localStyles.textIconCart}>{cart.length}</Text>
+          <Icon name='shopping-cart' size={30} color={'white'} onPress={() => setShowModal(!showModal)} />
+        </View>
+      </View>
       <BodyComponent>
         <TextComponent title='Escoge tu postre favorito!' marginVertical={20} marginHorizontal={0} fontSize={25} />
         <FlatList
           data={listProducts}
-          renderItem={({ item }) => <CardProduct item={item} updateStock={updateStock}/>}
+          renderItem={({ item }) => <CardProduct item={item} updateStock={updateStock} />}
           keyExtractor={item => item.id.toString()}
           numColumns={2}
           columnWrapperStyle={{ justifyContent: 'space-between' }}
         />
       </BodyComponent>
+      <ModalCart visible={showModal} setShowModal={() => setShowModal(!showModal)} cart={cart} clearCart={clearCart} />
     </View>
 
   )
 }
+
+const localStyles = StyleSheet.create({
+  headerHome: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  continerIcon: {
+    position: 'absolute',
+    right: 0,
+    bottom: 57,
+    alignItems: 'flex-end',
+    paddingHorizontal: 25,
+  },
+  textIconCart: {
+    backgroundColor: 'white',
+    paddingHorizontal: 5,
+    borderRadius: 25,
+    fontWeight: 'bold',
+    fontSize: 13,
+    marginRight: 6
+  }
+})

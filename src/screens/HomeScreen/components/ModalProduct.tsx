@@ -5,7 +5,7 @@ import { Product } from '../HomeScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native';
 
-//interface para las proipiedades
+//interface para las propiedades
 interface Props {
     visible: boolean;
     item: Product;
@@ -28,18 +28,24 @@ export const ModalProduct = ({ visible, item, setShowModal, updateStock }: Props
         setShowModal();
         //reiniciar contador
         setQuantity(1);
-        Alert.alert('Compra exitosa! ', 'Muchas gracias por comprar nuestro producto');
+        Alert.alert('Éxito! ', 'Producto añadido al carrito');
+    }
+
+    //funcion para reiniciar el contador desde el modal
+    const contClear = () =>{
+        setShowModal();
+        setQuantity(1);
     }
 
     return (
         <Modal visible={visible} animationType='fade' transparent={true} statusBarTranslucent={true}>
             <View style={styles.containerModal}>
-                <View style={{ ...styles.modal, width: width * 0.80 }}>
+                <View style={{ ...styles.modal, width: width * 0.85 }}>
                     <View style={styles.containerIcon}>
                         <Icon name='cancel'
                             size={26}
                             color={'red'}
-                            onPress={setShowModal}
+                            onPress={contClear}
                         />
                     </View>
                     <View style={styles.headerModal}>

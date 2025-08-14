@@ -51,6 +51,5 @@ const styles = StyleSheet.create({
     text: {
         fontWeight: 'bold',
         fontStyle: 'italic',
-        textAlign: 'center',
     }
 });

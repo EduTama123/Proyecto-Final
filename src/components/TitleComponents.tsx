@@ -12,6 +12,7 @@ interface Props {    //propiedades dinamicas para cambiar su valor
     borderBottomLeftRadius?: number;
     borderBottomRightRadius?: number;
     color?: string;
+    textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify';
 }
 
 export const TitleComponent = ({  //valores por defecto
@@ -23,7 +24,8 @@ export const TitleComponent = ({  //valores por defecto
     backgroundColor = 'transparent',
     borderBottomLeftRadius = 0,
     borderBottomRightRadius = 0,
-    color = 'black'
+    color = 'black',
+    textAlign= 'center'
 }: Props) => {
 
     return (
@@ -37,7 +39,8 @@ export const TitleComponent = ({  //valores por defecto
                 backgroundColor,
                 borderBottomLeftRadius,
                 borderBottomRightRadius,
-                color
+                color,
+                textAlign,
             }
             ]}>
                 {title}
@@ -50,6 +53,6 @@ const styles = StyleSheet.create({
     title: {
         fontWeight: 'bold',
         fontStyle: 'italic',
-        textAlign: 'center',
+        
     },
 });
